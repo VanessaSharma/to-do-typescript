@@ -23,11 +23,12 @@ var HomeTask = (function (_super) {
 }(Task));
 var WorkTask = (function (_super) {
     __extends(WorkTask, _super);
-    function WorkTask(dueDate, description, priority) {
-        _super.call(this, description, priority);
+    function WorkTask(dueDate, description, priority, assignedTo) {
+        _super.call(this, description, priority, assignedTo);
         this.dueDate = dueDate;
         this.description = description;
         this.priority = priority;
+        this.assignedTo = assignedTo;
     }
     return WorkTask;
 }(Task));
@@ -39,19 +40,31 @@ var HobbyTask = (function (_super) {
     }
     return HobbyTask;
 }(Task));
+var diane = {
+    name: "Diane D",
+    email: "diane@epicodus.com"
+};
+var thor = {
+    name: "Thor Son of Odin",
+    email: "thor@asgard.com"
+};
+var loki = {
+    name: "God of mischief",
+    email: "loki@geocities.com"
+};
 var tasks = [];
 tasks.push(new HomeTask("Do the dishes.", "High"));
-tasks.push(new HomeTask("Buy chocolate.", "Low"));
+tasks.push(new HomeTask("Buy chocolate.", "Low", diane));
 tasks.push(new HomeTask("Wash the laundry.", "High"));
-tasks[0].markDone(); // mark the first task as done.
+// tasks[0].markDone(); // mark the first task as done.
 tasks.push(new HobbyTask("Practice origami."));
 tasks.push(new HobbyTask("Bake a pie."));
 var today = new Date(); // get the current date and store it in the variable called 'today'
-var tomorrow = today; // set the variable tomorrow equal to the current date, but then reset it to today's date plus 1.
+var tomorrow = new Date(); // set the variable tomorrow equal to the current date, but then reset it to today's date plus 1.
 tomorrow.setDate(today.getDate() + 1);
-var nextDay = today; // create another date object and set it to today's date plus 2.
+var nextDay = new Date(); // create another date object and set it to today's date plus 2.
 nextDay.setDate(today.getDate() + 2);
-tasks.push(new WorkTask(today, "Update blog.", "High"));
-tasks.push(new WorkTask(tomorrow, "Go to meeting.", "Medium"));
-tasks.push(new WorkTask(nextDay, "Clean ceiling.", "Low"));
+tasks.push(new WorkTask(today, "Update blog.", "High", diane));
+tasks.push(new WorkTask(tomorrow, "Go to meeting.", "Medium", thor));
+tasks.push(new WorkTask(nextDay, "Clean ceiling.", "Low", loki));
 console.log(tasks);
